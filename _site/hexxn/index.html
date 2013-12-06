@@ -57,11 +57,19 @@ function getProcessingSketchId () { return 'HexxZ'; }
     
     <div id="content">
 
-      {{content}}
+        <div>
+    <canvas id="HexxN" data-processing-sources="HexxN.pde" 
+        width="100" height="100">
+      <p>Your browser suxx and does not support the canvas tag!</p>
+    </canvas>
+    <noscript>
+      <p>JavaScript is required to view the contents of this page, duh!</p>
+    </noscript>
+    </div>
 
-      <p id="description">{{ site.posts.first.title }}</p>
-      <p id="sources">{{ site.posts.first.sources }}</p>
-      <p id="archive"><a href="archive.html" title="ZEE HISTORY!">archive</a></p>
+      <p id="description"></p>
+      <p id="sources"></p>
+      <p id="archive"><a href="/archive" title="ZEE HISTORY!">archive</a></p>
     </div>
 
     <script type="text/javascript">

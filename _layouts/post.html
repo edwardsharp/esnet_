@@ -3,7 +3,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <title>esnet__</title>
+    <title>esnet__{{ post.title }}</title>
     <link rel="icon"  type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQAAVzABAEAjBQAaDwYAWjUGAGE6CQBrQQ0ATS8PAFhAJwBUQC8AbFI6AHVXPACBZk4A4NrWAPb19QAAAAAAAMmZmZmZmgAJIwAAAAAAcMIjPjA+PjAKpxIuMDMzMAm0Ii4zMzMACaIiLt3dMAAJtyIuIzPQAAm0Un5yM+IzKLRkfncy4iIotRF+dyLkIiq0QX53F+EiGrQUTkd34iIatEVu7u5iIVrBVVRBRFRVbAtGZGZla2uwAMu7u7u8vADAAwAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAADAAwAA" />
     <meta name="Generator" content="Processing" />
     <!-- - - - - - - - - - - - - - - - - - - - - 
@@ -57,11 +57,11 @@ function getProcessingSketchId () { return 'HexxZ'; }
     
     <div id="content">
 
-      {{content}}
+      {{ content }}
 
-      <p id="description">{{ site.posts.first.title }}</p>
-      <p id="sources">{{ site.posts.first.sources }}</p>
-      <p id="archive"><a href="archive.html" title="ZEE HISTORY!">archive</a></p>
+      <p id="description">{{ post.title }}</p>
+      <p id="sources">{{ post.sources }}</p>
+      <p id="archive"><a href="/archive" title="ZEE HISTORY!">archive</a></p>
     </div>
 
     <script type="text/javascript">
