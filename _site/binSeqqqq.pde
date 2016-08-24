@@ -26,11 +26,24 @@ BinaryClock binClock;
 
 void setup() {
 
-  sketch_width = displayWidth;
-  sketch_height = displayHeight;
-
-  size(sketch_width, sketch_height);
-   
+  //sketch_width = displayWidth/3;
+  //sketch_height = displayHeight/3;
+  //for processingJS
+  //sketch_width = displayWidth;
+  //sketch_height = displayHeight;
+  sketch_width = $(window).width();
+  sketch_height = $(window).height();
+  
+  //orientation(LANDSCAPE);
+    
+  //iPhone is 480x320
+  
+  //orientation(LANDSCAPE);
+  
+  //size(sketch_width, sketch_height);
+  size($(window).width(), $(window).height());
+  //size(screen.width, screen.height);
+  
   //hue, saturation, bal with 200 limit
   colorMode(HSB, 200);
 
@@ -100,7 +113,6 @@ void mouseReleased() {
 }
 
 void mouseDragged() {
-  //make sure mouseX > 0 as a workaround that makes 
   if (clickAndHold && mouseX > 0) {
     blockHue = map(mouseX, 0, width, 0.0, 200.0);
     s =  map(mouseY, 0, width, 50.0, 200.0);
@@ -150,7 +162,9 @@ class BinaryClock {
   int xRect3 = xRectSize * 3;
   int xRect4 = xRectSize * 4;
   int xRect5 = xRectSize * 5;
-
+  
+  int s, m, h = 0;
+  int maxTime = 100;
   // #TODO: constructor with paramz?
   BinaryClock() {
   }
@@ -163,13 +177,28 @@ class BinaryClock {
   void display() {
 
     // mod 10 the current time into 6 columnz (hh:mm:ss)
-    int s = second();
+    //int s = second();
+    if( s>maxTime ) {
+      s = 0;
+    } else {
+      s = s+1;
+    }
     int s0 = s % 10;
     int s1 = (s - s0)/10;
-    int m = minute();
+    
+    if( m>maxTime ){
+      m = 0;
+    } else {
+      m = m+1;
+    }
     int m0 = m % 10;
     int m1 = (m - m0)/10;
-    int h = hour();
+    
+    if( h>maxTime ){
+      h = 0;
+    }else {
+      h = h+1;
+    }
     int h0 = h % 10;
     int h1 = (h - h0)/10;
 
@@ -289,3 +318,5 @@ class BinaryClock {
   }
 
 }
+
+

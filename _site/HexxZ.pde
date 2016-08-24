@@ -23,17 +23,11 @@ String message;
 
 void setup() {
   
-  //sketch_width = displayWidth/3;
-  //sketch_height = displayHeight/3;
-  //for processingJS
-  sketch_width = screen.width;
-  sketch_height = screen.height;
-  //iPhone is 480x320
+  sketch_width = displayWidth;
+  sketch_height = displayHeight;
+
+  size(sketch_width, sketch_height);
   
-  //orientation(LANDSCAPE);
-  
-  //size(sketch_width, sketch_height);
-  size($(window).width(), setupHeight);
   flock = new Flock();
   // Add an initial set of boids into the system
   for (int i = 0; i < 1; i++) {
