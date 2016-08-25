@@ -3,7 +3,7 @@
  * ...with a weird set of features
  * 
  * author: edward sharp
- * year: 2012
+ * year: 2013
  * license: creative commons
  */
 

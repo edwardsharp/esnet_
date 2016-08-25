@@ -45,19 +45,18 @@
       // a good height, i guess.
       displayHeight = $(window).height();
       displayWidth = $(window).width();
-
-      $(window).resize(function(){
-        displayHeight = $(window).height();
-        displayWidth = $(window).width();
-      });
-
       $('canvas').width(displayWidth);
       $('canvas').height(displayHeight);
+
+      $(window).resize(function(){
+        $('canvas').width(displayWidth);
+        $('canvas').height(displayHeight);
+      });
 
     });
 
     </script>
-    
+
   </head>
   <body>
     
@@ -74,9 +73,11 @@
 </div>
 
 
-      <p id="description"></p>
-      <p id="sources"></p>
-      <p id="archive"><a href="/archive" title="ZEE HISTORY!">archive</a></p>
+      <div class="footer">
+        <p id="description">binSeq</p>
+        <p id="sources">touch for time. x/y touch&amp;slide for colorz. <a href="/binSeq.pde">binSeq.pde</a> <br><a href="https://appsto.re/us/ER1HJ.i">BnryClck in the appsto.re</a></p>
+        <p id="archive"><a href="/archive" title="ZEE HISTORY!">archive</a></p>
+      </div>
     </div>
 
   </body>
