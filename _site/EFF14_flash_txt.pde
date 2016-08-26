@@ -5,7 +5,8 @@
  *
  * a cyber-poem for processing.js
  * screened with many other processing sketches at the 
- * Expierimental Film Festival in 2014 
+ * Experimental Film Festival in 2014 
+ * http://effportland.com/
  *
  */
  
@@ -81,13 +82,14 @@ void draw() {
       if(valR > tMots.length - 1){
         valR = 0;
       }
+
       text(tMots[valR], x, y);
+      
     }
     dutyCycleCount++;
     if(dutyCycleCount>999999){
       dutyCycleCount = 0;
     }
-    
     
     timeStampMots = millis();
   }
