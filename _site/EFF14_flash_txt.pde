@@ -1,3 +1,15 @@
+/**
+ * EFF14_flash_txt
+ * 3dwardsharp
+ * http://edwardsharp.net
+ *
+ * a cyber-poem for processing.js
+ * screened with many other processing sketches at the 
+ * Expierimental Film Festival in 2014 
+ *
+ */
+ 
+
 int timeStamp;
 int timeStampMots;
 int valR = 0;
@@ -45,8 +57,7 @@ void draw() {
   
   //this probably doesn't ned to be calculated every frame...
   int timeX = (tMots[valR].length() * 44);
-//    println(timeX);
-    tempsRand = tempsRand + timeX;
+  tempsRand = tempsRand + timeX;
   
   if (tempsEcouleMots >= tempsRand/2) {
     background(0);
@@ -62,30 +73,9 @@ void draw() {
     if(dutyCycleCount % dutyCycleMod == 0){
       valR = int(random(0, tMots.length));
       dutyCycleMod = int(random(22,44));
-      //background(0);
-      //fill(#666666);
-      if(enableGlitch){
-        for (int i = 0; i < random(2,5); i = i+1) {
-          int r=int(random(50));
-          if(random(2,10) % 2 == 0){
-            if(random(2,10) % 2 == 0){
-              text(tMots[valR], x, y-r-i);
-            }else{
-              if(random(2,10) % 2 == 0){
-                text(tMots[valR], x, y+r+i);
-              }else{
-                text(tMots[valR], x, y-r-i);
-              }
-            }
-          }else{
-            text(tMots[valR], x+r+i, y);
-          }
-        }
-      } //enableGlitch
 
       text(tMots[valR], x, y);
       
-//      println("NEW valR "+valR+" dutyCycleMod "+dutyCycleMod);
     }else{
       valR++;
       if(valR > tMots.length - 1){
@@ -102,11 +92,3 @@ void draw() {
     timeStampMots = millis();
   }
 }
-
-void keyPressed(){
-  
-  if (key == 'g' || key == 'G') {
-    enableGlitch = !enableGlitch;
-  } 
-}
-
