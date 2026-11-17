@@ -1,1 +1,0 @@
-function getProcessingSketchId () { return 'binSeq'; }

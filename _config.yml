@@ -1,2 +1,4 @@
-markdown: rdiscount
+markdown: kramdown
 highlighter: false
+url: http://edwardsharp.net
+description: interactive processing sketchz and experimentz by 3dwardsharp.

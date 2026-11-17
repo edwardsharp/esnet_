@@ -1,0 +1,23 @@
+{% assign description = page.description | default: site.description %}
+{% capture title %}{% if page.title != 'esnet_' %}{{ page.title }} | {% endif %}esnet_{% endcapture %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ title | escape }}</title>
+<meta name="description" content="{{ description | escape }}" />
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="stylesheet" href="/stylesheets/esnet_.css" media="screen" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="esnet_" />
+<meta property="og:title" content="{{ title | escape }}" />
+<meta property="og:description" content="{{ description | escape }}" />
+<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+<meta property="og:image" content="{{ site.url }}/images/social-preview.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="esnet_ interactive sketches by 3dwardsharp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ title | escape }}" />
+<meta name="twitter:description" content="{{ description | escape }}" />
+<meta name="twitter:image" content="{{ site.url }}/images/social-preview.png" />
+<meta name="twitter:image:alt" content="esnet_ interactive sketches by 3dwardsharp" />

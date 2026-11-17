@@ -42,17 +42,20 @@ void setup() {
   // constructor, no parameters
   binClock = new BinaryClock();
 
-  //#TODO: use createFont
-  //font = loadFont("SansSerif-100.vlw");
-  //textFont(font, 100);
-  
-  //String[] fontList = PFont.list(); //print out a list of useable fonts
-  //println(fontList);
-  font = createFont("SansSerif", binClock.getYRectSize());
+  font = createFont("Atkinson Hyperlegible", binClock.getTimeTextSize());
   textFont(font);
+  textAlign(CENTER, CENTER);
 }
 
 void draw() {
+  if (width != sketch_width || height != sketch_height) {
+    sketch_width = width;
+    sketch_height = height;
+    binClock.resize();
+    font = createFont("Atkinson Hyperlegible", binClock.getTimeTextSize());
+    textFont(font);
+    textAlign(CENTER, CENTER);
+  }
   binClock.display();
 
   if ( mousePressed ) { 
@@ -139,25 +142,28 @@ class BinaryClock {
   String[] hStr, mStr, sStr;
 
   //dynamically calculate the size of a single box determined by the sketch height & width.
-  int xRectSize = sketch_width / 6;  
-  int yRectSize = sketch_height / 4;
+  int xRectSize, yRectSize;
 
-  //since were for looping down from 3 we need the offset of (what would be) the bottom box
-  int yOffset = yRectSize * 3;
   int xRect0 = 0;
-  int xRect1 = xRectSize;
-  int xRect2 = xRectSize * 2;
-  int xRect3 = xRectSize * 3;
-  int xRect4 = xRectSize * 4;
-  int xRect5 = xRectSize * 5;
+  int xRect1, xRect2, xRect3, xRect4, xRect5;
 
   // #TODO: constructor with paramz?
   BinaryClock() {
+    resize();
+  }
+
+  void resize() {
+    xRectSize = floor(sketch_width / 6.0);
+    yRectSize = floor(sketch_height / 4.0);
+    xRect1 = floor(sketch_width / 6.0);
+    xRect2 = floor(sketch_width * 2 / 6.0);
+    xRect3 = floor(sketch_width * 3 / 6.0);
+    xRect4 = floor(sketch_width * 4 / 6.0);
+    xRect5 = floor(sketch_width * 5 / 6.0);
   }
   
-  int getYRectSize() {
-    //return yRectSize to be used for setting the font size.
-    return yRectSize;
+  int getTimeTextSize() {
+    return floor(min(xRectSize, yRectSize * 0.8));
   }
   
   void display() {
@@ -186,7 +192,8 @@ class BinaryClock {
 
     //for each HH, MM, SS turn on the results from last run, recalculate next second and draw the rect...
     for ( int i=3; i>=0; i-- ){
-      int yRect = yOffset-(i*yRectSize);     
+      int yRect = floor((3 - i) * sketch_height / 4.0);
+      int yRectHeight = floor((4 - i) * sketch_height / 4.0) - yRect;
       noStroke();
       
       if ( h1 >= pow(sqr, i) ){
@@ -195,7 +202,7 @@ class BinaryClock {
       } else {    
         fill(c_off);
       } 
-      rect(xRect0, yRect, xRectSize, yRectSize);
+      rect(xRect0, yRect, xRect1 - xRect0, yRectHeight);
       
       if ( h0 >= pow(sqr, i) ){
         h0 -= pow(sqr, i);
@@ -204,7 +211,7 @@ class BinaryClock {
         fill(c_off);
       }
 
-      rect(xRect1, yRect, xRectSize, yRectSize);
+      rect(xRect1, yRect, xRect2 - xRect1, yRectHeight);
       
       if ( m1 >= pow(sqr, i) ){
         m1 -= pow(sqr, i);
@@ -213,7 +220,7 @@ class BinaryClock {
         fill(c_off);
       }
       
-      rect(xRect2, yRect, xRectSize, yRectSize);
+      rect(xRect2, yRect, xRect3 - xRect2, yRectHeight);
       
       if ( m0 >= pow(sqr, i) ){
         m0 -= pow(sqr, i);
@@ -222,7 +229,7 @@ class BinaryClock {
         fill(c_off);
       }
       
-      rect(xRect3, yRect, xRectSize, yRectSize);
+      rect(xRect3, yRect, xRect4 - xRect3, yRectHeight);
       
       if ( s1 >= pow(sqr, i) ){
         s1 -= pow(sqr, i);
@@ -231,7 +238,7 @@ class BinaryClock {
         fill(c_off);
       }
       
-      rect(xRect4, yRect, xRectSize, yRectSize);
+      rect(xRect4, yRect, xRect5 - xRect4, yRectHeight);
       
       if ( s0 >= pow(sqr, i) ){
         s0 -= pow(sqr, i);
@@ -240,7 +247,7 @@ class BinaryClock {
         fill(c_off);
       }
       
-      rect(xRect5, yRect, xRectSize, yRectSize);
+      rect(xRect5, yRect, sketch_width - xRect5, yRectHeight);
       
       //print("xRectSize: "+xRectSize+" yRectSize: "+yRectSize);
       //println("xRect0: "+xRect0+" xRect1: "+xRect1+" xRect5: "+xRect5+" yRect: "+yRect+" xRectSize: "+xRectSize+" yRectSize: "+yRectSize);
@@ -274,18 +281,16 @@ class BinaryClock {
     //print("xRectSize: "+xRectSize);
     //print("timeXOffset: "+timeXOffset);
     
-    int timeYOffset = (yRectSize * 4) -  5;
-    int timeXOffset = yRectSize / 3;
-    int timeSepOffset = xRectSize / 7;
+    float timeY = (floor(3 * sketch_height / 4.0) + sketch_height) / 2.0;
 
-    text(hStr[0], xRect0+timeXOffset, timeYOffset);
-    text(hStr[1], xRect1+timeXOffset, timeYOffset);
-    text(":", xRect2-timeSepOffset, timeYOffset);
-    text(mStr[0], xRect2+timeXOffset, timeYOffset);
-    text(mStr[1], xRect3+timeXOffset, timeYOffset);
-    text(":", xRect4-timeSepOffset, timeYOffset);
-    text(sStr[0], xRect4+timeXOffset, timeYOffset);
-    text(sStr[1], xRect5+timeXOffset, timeYOffset);
+    text(hStr[0], (xRect0 + xRect1) / 2.0, timeY);
+    text(hStr[1], (xRect1 + xRect2) / 2.0, timeY);
+    text(":", xRect2, timeY);
+    text(mStr[0], (xRect2 + xRect3) / 2.0, timeY);
+    text(mStr[1], (xRect3 + xRect4) / 2.0, timeY);
+    text(":", xRect4, timeY);
+    text(sStr[0], (xRect4 + xRect5) / 2.0, timeY);
+    text(sStr[1], (xRect5 + sketch_width) / 2.0, timeY);
   }
 
 }

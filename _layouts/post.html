@@ -1,43 +1,14 @@
 <!DOCTYPE html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/esnet_.css" media="screen" />
-    <title>esnet__{{ post.title }}</title>
-    <link rel="icon"  type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQAAVzABAEAjBQAaDwYAWjUGAGE6CQBrQQ0ATS8PAFhAJwBUQC8AbFI6AHVXPACBZk4A4NrWAPb19QAAAAAAAMmZmZmZmgAJIwAAAAAAcMIjPjA+PjAKpxIuMDMzMAm0Ii4zMzMACaIiLt3dMAAJtyIuIzPQAAm0Un5yM+IzKLRkfncy4iIotRF+dyLkIiq0QX53F+EiGrQUTkd34iIatEVu7u5iIVrBVVRBRFRVbAtGZGZla2uwAMu7u7u8vADAAwAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAADAAwAA" />
-
-    <!--[if lt IE 9]>
-      <script type="text/javascript">alert("Your browser suxx and does not support the canvas tag. sadface.");</script>
-    <![endif]-->
-    <script src="/processing.js" type="text/javascript"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-    var displayHeight, displayWidth;
-
-    $(function() {
-      // a good height, i guess.
-      displayHeight = $(window).height();
-      displayWidth = $(window).width();
-      $('canvas').width(displayWidth);
-      $('canvas').height(displayHeight);
-
-    });
-
-    </script>
-
+    {% include head.html %}
   </head>
   <body>
     
     <div id="content">
 
-      {{ content }}
+      {% include sketch.html sketch=page.sketch %}
 
-      <div class="footer">
-        <p id="description">{{ page.title }}</p>
-        <p id="sources">{{ page.sources }}</p>
-        <p id="archive"><a href="/archive" title="ZEE HISTORY!">archive</a></p>
-      </div>
+      {% include footer.html title=page.title content=content %}
     </div>
 
   </body>
