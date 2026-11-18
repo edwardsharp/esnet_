@@ -36,6 +36,7 @@
   --surface: #24101f;
   --text: #ededed;
   --accent: #ff00ff;
+  --accent-hover: #ff99ff;
   --line: #59304e;
 }
 
@@ -46,6 +47,7 @@
     --surface: #f9ddec;
     --text: #222222;
     --accent: #a000a0;
+    --accent-hover: #700070;
     --line: #d7abc7;
   }
 }
@@ -71,6 +73,10 @@ a {
   color: var(--accent);
 }
 
+a:hover, a:focus-visible {
+  color: var(--accent-hover);
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 5px;
@@ -84,9 +90,74 @@ a {
 canvas {
   margin: 0;
   padding: 0;
+  touch-action: pan-y pinch-zoom;
 }
 
-.footer, .archive-content {
-  margin: 5em;
+.footer {
+  box-sizing: border-box;
+  max-width: 60rem;
+  margin: 5em auto;
+  padding-inline: clamp(1.5rem, 6vw, 5rem);
+}
+
+.archive-content {
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  padding: clamp(1.5rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.archive-content .posts {
+  display: grid;
+  grid-template-columns: max-content max-content minmax(0, 1fr);
+  column-gap: 0.65em;
+  list-style: none;
+  margin: 0;
+  padding-inline-start: 0;
+  line-height: 2;
+}
+
+.archive-content .posts time,
+.archive-content .posts [aria-hidden="true"] {
+  color: var(--text);
+}
+
+.archive-content .posts a:is(:hover, :focus-visible) :is(time, [aria-hidden="true"]) {
+  color: var(--accent);
+}
+
+.archive-content .posts li {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+.archive-content .posts time {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.archive-content .posts a {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.archive-content .post-title {
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+}
+
+.archive-back {
+  margin: 2rem 0 0;
+  text-align: center;
 }
 

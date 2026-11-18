@@ -43,6 +43,7 @@ void setup() {
   size(sketch_width, sketch_height);
 
   smooth();
+  textAlign(CENTER);
   background(0);
   timeStamp = millis();
   timeStampMots = millis();
@@ -68,7 +69,7 @@ void draw() {
     background(0);
     fill(255);
     textSize(66);
-    int x = 300;//int(random(0, width-75));
+    int x = width / 2;
     int y = 266;//int(random(30, height-30));
     
     if(dutyCycleCount % dutyCycleMod == 0){
